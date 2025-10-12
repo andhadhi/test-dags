@@ -1,0 +1,25 @@
+{
+    "name": "my-first-dag",
+    "operator": "kubernetes",
+    "params": {},
+    "tasks": [
+        {
+            "name": "task1",
+            "depends_on": [],
+            "container": {
+                "image": "node:22-alpine",
+                "env": [
+                    {
+                        "name": "EXAMPLE_ENV",
+                        "value": "fizan-example-value"
+                    }
+                ],
+                "command": [
+                    "node",
+                    "-e",
+                    "console.log('Hello from fizans task1, env is ', process.env.EXAMPLE_ENV);"
+                ]
+            }
+        }
+    ]
+}
