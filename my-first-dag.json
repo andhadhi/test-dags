@@ -16,8 +16,7 @@
                 ],
                 "command": [
                     "node",
-                    "-e",
-                    "console.log('Hello from fizans task1, env is ', process.env.EXAMPLE_ENV);"
+                    "src/main.js"
                 ]
             }
         }

@@ -5,4 +5,4 @@ function main() {
     test.print();
 }
 
-module.exports = { main };
+main();
