@@ -1,0 +1,55 @@
+{
+    "name": "my-first-dag",
+    "operator": "kubernetes",
+    "params": {},
+    "tasks": [
+        {
+            "name": "task1",
+            "depends_on": [],
+            "container": {
+                "image": "node:22-alpine",
+                "env": [],
+                "command": [
+                    "node",
+                    "-e",
+                    "console.log('Hello from fizans task1');"
+                ]
+            }
+        },
+        {
+            "name": "task2",
+            "depends_on": [
+                "task1"
+            ],
+
+            "container": {
+                "image": "my_custom_private_docker_image",
+                "pullSecret": "pull_secret",
+                "serviceAccount": "",
+                "resources": {
+                    "cpu": {
+                        "min": "",
+                        "max": ""
+                    },
+                    "mem": {
+                        "min": "",
+                        "max": ""
+                    }
+                },
+                "env": [
+                    {
+                        "name": "",
+                        "value": "",
+                        "valueFrom": {
+                            "secret": {
+                                "name": "",
+                                "key": ""
+                            }
+                        }
+                    }
+                ],
+                "node_selector": ""
+            }
+        }
+    ]
+}

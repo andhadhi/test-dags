@@ -1,0 +1,109 @@
+{
+  "name": "sdk-demo-dag",
+  "operator": "kubernetes",
+  "params": {},
+  "tasks": [
+    {
+      "name": "extract-data",
+      "depends_on": [],
+      "container": {
+        "image": "node:22-alpine",
+        "command": [
+          "sh",
+          "-c",
+          "npm install && node /repo/tasks/extract.js"
+        ],
+        "env": [
+          {
+            "name": "DATA_SOURCE",
+            "value": "api.example.com"
+          }
+        ],
+        "resources": {
+          "cpu": {
+            "min": "100m",
+            "max": "500m"
+          },
+          "mem": {
+            "min": "128Mi",
+            "max": "256Mi"
+          }
+        }
+      }
+    },
+    {
+      "name": "transform-data",
+      "depends_on": ["extract-data"],
+      "container": {
+        "image": "node:22-alpine",
+        "command": [
+          "sh",
+          "-c",
+          "npm install && node /repo/tasks/transform.js"
+        ],
+        "env": [
+          {
+            "name": "BATCH_SIZE",
+            "value": "1000"
+          }
+        ],
+        "resources": {
+          "cpu": {
+            "min": "200m",
+            "max": "1000m"
+          },
+          "mem": {
+            "min": "256Mi",
+            "max": "512Mi"
+          }
+        }
+      }
+    },
+    {
+      "name": "load-data",
+      "depends_on": ["transform-data"],
+      "container": {
+        "image": "node:22-alpine",
+        "command": [
+          "sh",
+          "-c",
+          "npm install && node /repo/tasks/load.js"
+        ],
+        "env": [
+          {
+            "name": "DB_HOST",
+            "value": "postgres.default.svc.cluster.local"
+          },
+          {
+            "name": "DB_USER",
+            "valueFrom": {
+              "secret": {
+                "name": "postgres-credentials",
+                "key": "username"
+              }
+            }
+          },
+          {
+            "name": "DB_PASSWORD",
+            "valueFrom": {
+              "secret": {
+                "name": "postgres-credentials",
+                "key": "password"
+              }
+            }
+          }
+        ],
+        "resources": {
+          "cpu": {
+            "min": "100m",
+            "max": "500m"
+          },
+          "mem": {
+            "min": "128Mi",
+            "max": "256Mi"
+          }
+        }
+      }
+    }
+  ]
+}

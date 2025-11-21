@@ -16,8 +16,9 @@
                     }
                 ],
                 "command": [
-                    "node",
-                    "src/main.js"
+                    "sh",
+                    "-c",
+                    "npm install && node src/main.js"
                 ]
             }
         }
