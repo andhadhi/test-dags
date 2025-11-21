@@ -13,6 +13,12 @@
           "-c",
           "npm install && node /repo/tasks/extract.js"
         ],
+        "env": [
+          {
+            "name": "DATA_SOURCE",
+            "value": "s3://my-bucket/input-data/"
+          }
+        ],
         "resources": {
           "cpu": {
             "min": "100m",

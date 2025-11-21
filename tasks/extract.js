@@ -20,7 +20,7 @@ async function extractData() {
                 { id: 2, name: "Record 2", value: 200 },
                 { id: 3, name: "Record 3", value: 300 }
             ],
-            source: dataSource,
+            source: process.env.DATA_SOURCE,
             extractedAt: new Date().toISOString(),
             totalRecords: 3
         };
