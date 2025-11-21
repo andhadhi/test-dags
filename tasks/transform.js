@@ -5,9 +5,6 @@ async function transformData() {
 
     console.log("Starting data transformation...");
 
-    const batchSize = parseInt(process.env.BATCH_SIZE || "100");
-    console.log(`Processing in batches of: ${batchSize}`);
-
     const extractResult = await ctx.getTaskResult('extract-data');
     console.log("Retrieved extract-data result:", extractResult);
 
@@ -26,7 +23,6 @@ async function transformData() {
             records: transformedRecords,
             transformedAt: new Date().toISOString(),
             totalProcessed: transformedRecords.length,
-            batchSize: batchSize,
             sourceExtraction: extractResult?.extractedAt
         };
 

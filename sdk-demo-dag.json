@@ -13,12 +13,6 @@
           "-c",
           "npm install && node /repo/tasks/extract.js"
         ],
-        "env": [
-          {
-            "name": "DATA_SOURCE",
-            "value": "api.example.com"
-          }
-        ],
         "resources": {
           "cpu": {
             "min": "100m",
@@ -41,12 +35,6 @@
           "-c",
           "npm install && node /repo/tasks/transform.js"
         ],
-        "env": [
-          {
-            "name": "BATCH_SIZE",
-            "value": "1000"
-          }
-        ],
         "resources": {
           "cpu": {
             "min": "200m",
@@ -68,30 +56,6 @@
           "sh",
           "-c",
           "npm install && node /repo/tasks/load.js"
-        ],
-        "env": [
-          {
-            "name": "DB_HOST",
-            "value": "postgres.default.svc.cluster.local"
-          },
-          {
-            "name": "DB_USER",
-            "valueFrom": {
-              "secret": {
-                "name": "postgres-credentials",
-                "key": "username"
-              }
-            }
-          },
-          {
-            "name": "DB_PASSWORD",
-            "valueFrom": {
-              "secret": {
-                "name": "postgres-credentials",
-                "key": "password"
-              }
-            }
-          }
         ],
         "resources": {
           "cpu": {

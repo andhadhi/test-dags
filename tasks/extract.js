@@ -5,11 +5,9 @@ async function extractData() {
 
     console.log("Starting data extraction...");
 
-    const dataSource = process.env.DATA_SOURCE;
     const apiEndpoint = ctx.getVariable('API_ENDPOINT');
     const apiKey = ctx.getSecretValue('API_KEY');
 
-    console.log(`Extracting from: ${dataSource}`);
     console.log(`API Endpoint: ${apiEndpoint}`);
     console.log(`API Key configured: ${!!apiKey}`);
 

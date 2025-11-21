@@ -5,14 +5,6 @@ async function loadData() {
 
     console.log("Starting data load...");
 
-    const dbHost = process.env.DB_HOST;
-    const dbUser = process.env.DB_USER;
-    const dbPassword = process.env.DB_PASSWORD;
-
-    console.log(`Loading to database: ${dbHost}`);
-    console.log(`Database user: ${dbUser}`);
-    console.log(`Password configured: ${!!dbPassword}`);
-
     const dbUrl = ctx.getVariable('DATABASE_URL');
     console.log(`Database URL from variables: ${dbUrl || 'not set'}`);
 
@@ -27,12 +19,11 @@ async function loadData() {
         const loadResult = {
             recordsLoaded: recordsToLoad.length,
             loadedAt: new Date().toISOString(),
-            destination: dbHost,
             status: "success",
             sourceTransformation: transformResult?.transformedAt
         };
 
-        console.log(`Loaded ${loadResult.recordsLoaded} records from transform-data to ${loadResult.destination}`);
+        console.log(`Loaded ${loadResult.recordsLoaded} records from transform-data`);
 
         return loadResult;
     });
