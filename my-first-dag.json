@@ -16,9 +16,7 @@
                     }
                 ],
                 "command": [
-                    "sh",
-                    "-c",
-                    "node src/main.js"
+                   "node src/main.js"
                 ]
             }
         }
