@@ -1,4 +1,8 @@
+const test = require('./test')
+
 async function main() {
+    test();
+    
     const apiKey = process.env.API_KEY;
     const apiEndpoint = process.env.API_ENDPOINT;
 
