@@ -1,0 +1,40 @@
+{
+  "name": "parallel-tasks",
+  "operator": "kubernetes",
+  "description": "DAG with parallel task execution - tasks run simultaneously",
+  "params": {},
+  "tasks": [
+    {
+      "name": "fetch-users",
+      "depends_on": [],
+      "container": {
+        "image": "node:22-alpine",
+        "command": ["node", "-e", "console.log('Fetching users...'); setTimeout(() => console.log('Users fetched: 100'), 3000);"]
+      }
+    },
+    {
+      "name": "fetch-products",
+      "depends_on": [],
+      "container": {
+        "image": "node:22-alpine",
+        "command": ["node", "-e", "console.log('Fetching products...'); setTimeout(() => console.log('Products fetched: 50'), 2000);"]
+      }
+    },
+    {
+      "name": "fetch-orders",
+      "depends_on": [],
+      "container": {
+        "image": "node:22-alpine",
+        "command": ["node", "-e", "console.log('Fetching orders...'); setTimeout(() => console.log('Orders fetched: 200'), 4000);"]
+      }
+    },
+    {
+      "name": "aggregate",
+      "depends_on": ["fetch-users", "fetch-products", "fetch-orders"],
+      "container": {
+        "image": "node:22-alpine",
+        "command": ["node", "-e", "console.log('Aggregating all data...'); setTimeout(() => console.log('Aggregation complete!'), 2000);"]
+      }
+    }
+  ]
+}

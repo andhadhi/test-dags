@@ -9,8 +9,6 @@
       "container": {
         "image": "node:22-alpine",
         "command": [
-          "sh",
-          "-c",
           "npm install && node /repo/tasks/extract.js"
         ],
         "env": [
@@ -37,8 +35,6 @@
       "container": {
         "image": "node:22-alpine",
         "command": [
-          "sh",
-          "-c",
           "npm install && node /repo/tasks/transform.js"
         ],
         "resources": {
@@ -59,8 +55,6 @@
       "container": {
         "image": "node:22-alpine",
         "command": [
-          "sh",
-          "-c",
           "npm install && node /repo/tasks/load.js"
         ],
         "resources": {

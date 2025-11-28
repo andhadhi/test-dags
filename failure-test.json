@@ -1,0 +1,32 @@
+{
+  "name": "failure-test",
+  "operator": "kubernetes",
+  "description": "DAG designed to test failure handling - second task fails",
+  "params": {},
+  "tasks": [
+    {
+      "name": "step1-success",
+      "depends_on": [],
+      "container": {
+        "image": "node:22-alpine",
+        "command": ["node", "-e", "console.log('Step 1: Success'); process.exit(0);"]
+      }
+    },
+    {
+      "name": "step2-fail",
+      "depends_on": ["step1-success"],
+      "container": {
+        "image": "node:22-alpine",
+        "command": ["node", "-e", "console.log('Step 2: About to fail...'); process.exit(1);"]
+      }
+    },
+    {
+      "name": "step3-never-runs",
+      "depends_on": ["step2-fail"],
+      "container": {
+        "image": "node:22-alpine",
+        "command": ["node", "-e", "console.log('Step 3: This should never run');"]
+      }
+    }
+  ]
+}
