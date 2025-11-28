@@ -1,0 +1,19 @@
+{
+    "name": "long-running-dag",
+    "operator": "kubernetes",
+    "params": {},
+    "cron": "",
+    "tasks": [
+        {
+            "name": "long-task",
+            "depends_on": [],
+            "container": {
+                "image": "node:22-alpine",
+                "env": [],
+                "command": [
+                   "node -e \"setInterval(() => console.log('still running...', new Date()), 5000)\""
+                ]
+            }
+        }
+    ]
+}
