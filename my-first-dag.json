@@ -7,6 +7,8 @@
         {
             "name": "task1",
             "depends_on": [],
+            "retries": 2,
+            "timeout": "5m",
             "container": {
                 "image": "node:22-alpine",
                 "env": [

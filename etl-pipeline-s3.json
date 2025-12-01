@@ -7,6 +7,8 @@
     {
       "name": "extract",
       "depends_on": [],
+      "retries": 2,
+      "timeout": "5m",
       "container": {
         "image": "node:22-alpine",
         "command": ["cd /repo && npm install && node tasks/extract.js"],
@@ -27,6 +29,8 @@
     {
       "name": "transform",
       "depends_on": ["extract"],
+      "retries": 1,
+      "timeout": "10m",
       "container": {
         "image": "node:22-alpine",
         "command": ["cd /repo && npm install && node tasks/transform.js"],
@@ -46,6 +50,8 @@
     {
       "name": "load",
       "depends_on": ["transform"],
+      "retries": 3,
+      "timeout": "5m",
       "container": {
         "image": "node:22-alpine",
         "command": ["cd /repo && npm install && node tasks/load.js"],
