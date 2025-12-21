@@ -1,6 +1,8 @@
 const test = require('./test')
 
 async function main() {
+    console.log(require('util').inspect(process.env, { depth: null, colors: true })); // eslint-disable-line global-require
+
     test.print();
     
     const apiKey = process.env.API_KEY;
