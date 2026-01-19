@@ -2,7 +2,7 @@
     "name": "my-first-dag",
     "operator": "kubernetes",
     "params": {},
-    "cron": "*/1 * * * *",
+    "cron": "*/5 * * * *",
     "tasks": [
         {
             "name": "task1",
