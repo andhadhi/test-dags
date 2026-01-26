@@ -1,6 +1,6 @@
 {
   "name": "my-first-dag",
-  "description": "",
+  "description": "My First Dag",
   "operator": "kubernetes",
   "params": {},
   "cron": "*/5 * * * *",
