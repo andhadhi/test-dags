@@ -1,9 +1,8 @@
 {
-  "name": "my-first-dag",
-  "description": "My First Dag",
+  "name": "my-first-dag-no-cron",
+  "description": "My First Dag Without CRON",
   "operator": "kubernetes",
   "params": {},
-  "cron": "*/5 * * * *",
   "variables": [
     {
       "name": "API_KEY",
