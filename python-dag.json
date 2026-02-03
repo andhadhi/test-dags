@@ -1,0 +1,38 @@
+{
+  "name": "my-first-dag",
+  "description": "My First Dag",
+  "operator": "kubernetes",
+  "params": {},
+  "cron": "*/5 * * * *",
+  "variables": [
+    {
+      "name": "API_KEY",
+      "type": "variable"
+    },
+    {
+      "name": "API_ENDPOINT",
+      "type": "secret"
+    }
+  ],
+  "tags": ["Mine", "first tag"],
+  "tasks": [
+    {
+      "name": "task1",
+      "depends_on": [],
+      "retries": 2,
+      "timeout": "5m",
+      "container": {
+        "image": "python:3-slim",
+        "env": [
+          {
+            "name": "EXAMPLE_ENV",
+            "value": "fizan-example-value"
+          }
+        ],
+        "command": [
+          "pip install requests && python generate_embeddings.py"
+        ]
+      }
+    }
+  ]
+}
